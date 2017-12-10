@@ -2,12 +2,16 @@ import { createSelector } from 'reselect';
 
 export const ACTIONS = {
     'SOCKET_RECEIVED': 'SOCKET_RECEIVED',
-    'SOCKET_SENT': 'SOCKET_SENT'
+    'SOCKET_SENT': 'SOCKET_SENT',
+    'PAGE_SIZE_CHANGED': 'PAGE_SIZE_CHANGED',
+    'PAGE_CHANGED': 'PAGE_CHANGED'
 };
 
 const initialState = {
     logIds: [],
-    logsById: {}
+    logsById: {},
+    logsPerPage: 20,
+    currentPage: 0
 };
 
 function dateSort(a, b) {
@@ -17,11 +21,26 @@ function dateSort(a, b) {
 }
 
 const logIdsFilter = state => state.socketLogs.logIds;
-const logsFilter = state => state.socketLogs.logIds.map(id => state.socketLogs.logsById[id]);
+const logsPerPageFilter = state => ({
+    logsPerPage: state.socketLogs.logsPerPage,
+    currentPage: state.socketLogs.currentPage
+});
+const logsFilter = state => state.socketLogs.logsById;
 
 export const logsSelector = createSelector(
+    logIdsFilter,
     logsFilter,
-    items => items.sort(dateSort)
+    logsPerPageFilter,
+    (ids, items, pageInfo) => {
+        const begIndex = pageInfo.currentPage * pageInfo.logsPerPage;
+        const endIndex = begIndex * 1 + pageInfo.logsPerPage * 1;
+        return {
+            count: ids.length,
+            logs: ids.map(id => items[id]).sort(dateSort).slice(begIndex, endIndex),
+            pageSize: pageInfo.logsPerPage,
+            currentPage: pageInfo.currentPage
+        };
+    }
 );
 
 const socketLogs = (state = initialState, action) => {
@@ -44,6 +63,16 @@ const socketLogs = (state = initialState, action) => {
                 })
             });
         }
+        case ACTIONS.PAGE_SIZE_CHANGED: {
+            return Object.assign({}, state, {
+                logsPerPage: action.payload
+            });
+        }
+        case ACTIONS.PAGE_CHANGED: {
+            return Object.assign({}, state, {
+                currentPage: action.payload
+            });
+        }
         default:
         return state;
     }
@@ -55,6 +84,16 @@ const socketAction = (type) => (payload) => {
         payload
     };
 };
+
+export const createPageSizeChangeAction = (newPageSize) => ({
+    type: ACTIONS.PAGE_SIZE_CHANGED,
+    payload: newPageSize
+});
+
+export const createPageChangeAction = (newPage) => ({
+    type: ACTIONS.PAGE_CHANGED,
+    payload: newPage
+});
 
 export const createSocketMessageReceivedAction = socketAction(ACTIONS.SOCKET_RECEIVED);
 

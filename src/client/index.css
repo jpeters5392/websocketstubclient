@@ -99,9 +99,39 @@ footer {
 }
 
 .SOCKET_RECEIVED {
-    color: #607D8B;
+    color: #1976D2;
 }
 
 .SOCKET_SENT {
-    color: #1976D2;
+    color: #607D8B;
+}
+
+.icon {
+    float: right;
+    height: 25px;
+    width: 25px;
+}
+
+.icon.pause {
+    background: url('/public/assets/ic_pause_circle_outline_black_24dp_1x.png') no-repeat center;
+}
+
+.icon.resume {
+    background: url('/public/assets/ic_play_circle_outline_black_24dp_1x.png') no-repeat center;
+}
+
+.log-console-page-size, .log-console-current-page {
+    padding: 5px;
+}
+
+.log-console-current-page {
+    margin-left: 15px;
+}
+
+.command-console-method-input {
+    float: left;
+}
+
+.command-console-scenario-selection {
+    float: right;
 }
