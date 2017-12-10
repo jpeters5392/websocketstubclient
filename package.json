@@ -4,8 +4,27 @@
   "description": "An application to act as a web socket client stub",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "predev": "npm run build",
+    "dev": "node index.js"
   },
   "author": "Joel Peterson",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.16.2",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "reselect": "^3.0.1",
+    "ws": "^3.3.2"
+  }
 }

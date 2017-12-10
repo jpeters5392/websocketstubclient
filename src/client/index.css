@@ -1,0 +1,107 @@
+/*
+primary #2196F3
+primary dark #1976D2
+accent #607D8B
+text #212121
+secondary text #757575
+divider #BDBDBD
+light primary #BBDEFB
+text/icons #FFFFFF
+*/
+
+body, ul, li, h1, h2, h3, h4, h5, h6 {
+    margin: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1976D2;
+}
+
+ul {
+    list-style-type: none;
+}
+
+header, footer {
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header {
+    height: 40px;
+    box-shadow: 0px 2px 2px #1976D2;
+    background-color: #2196F3;
+    color: #FFFFFF;
+}
+
+header a.site-link {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+    color: #FFFFFF;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+header a.site-link:hover {
+    color: #607D8B;
+}
+
+section {
+    padding: 10px;
+    padding-top: 50px;
+    overflow-y: auto;
+    height: calc(100% - 235px);
+    border-bottom: 1px solid #BDBDBD;
+    box-sizing: border-box;
+}
+
+footer {
+    bottom: 0;
+    padding: 10px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.collapsed, .expanded {
+    padding-left: 25px;
+}
+
+.collapsed {
+    background: url('/public/assets/ic_expand_more_black_24dp_1x.png') no-repeat left center;
+}
+
+.expanded {
+    background: url('/public/assets/ic_expand_less_black_24dp_1x.png') no-repeat left center;
+}
+
+.command-console {
+    height: 205px;
+}
+
+.command-editor {
+    width: 100%;
+    height: 155px;
+    margin-top: 5px;
+}
+
+.log-entry {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.log-entry:hover {
+    background-color: #BDBDBD;
+}
+
+.SOCKET_RECEIVED {
+    color: #607D8B;
+}
+
+.SOCKET_SENT {
+    color: #1976D2;
+}
