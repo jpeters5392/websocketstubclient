@@ -41,10 +41,6 @@ export class SocketCommandComponent extends React.Component {
         this.socket.send(command);
 
         this.commandMessage.value = '';
-        this.setState({
-            selectedCommand: null,
-            selectedScenario: null
-        });
     }
 
     handleSocketMessage(event) {
